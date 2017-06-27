@@ -21,5 +21,37 @@ data("anscombe")
 anscombe
 with(anscombe, plot(x1, y1))
 abline(lm(y1 ~ x1, data = anscombe))
+
+
 ```
+```{r data_import, echo=TRUE}
+library(readr)
+df <- df<-data.frame(read.csv("analgesic (7).csv"))
+
+```
+```{r data_summary, echo=TRUE}
+dim(df)
+colnames(df)
+head(df)
+tail(df)
+summary(df)
+
+```
+
+
+
+```
+```{r data_tidy, echo=TRUE}
+library(tidyr)
+library(dplyr)
+
+
+df_1 <- gather(df, key = Key, value = Value, Measurement_1, Measurement_2, Measurement_3, -ID)
+df_2 <- group_by(df_1)
+df_2
+
+summarise(df_2, mean = mean(Value))
+
+```
+
 
